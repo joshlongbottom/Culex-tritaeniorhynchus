@@ -1,2 +1,2 @@
 # culex
-Code from the Culex tritaeniorhynchus distribution BRT mapping project.
+Code from the Culex tritaeniorhynchus BRT distribution mapping project.
