@@ -1,19 +1,15 @@
-# prepare culex occurrence data for modelling
-# check all packages are loaded before running (if working on script separately)
-
+## prepare culex occurrence data for modelling
 # clear workspace
 rm(list = ls())
 
 # load packages
-library(seegSDM)
-library(raster)
-library(snowfall)
-library(GRaF)
-library(sp)
-library(rgeos)
-library(maptools)
-library(maps)
-library(dismo)
+source('code/packages.R')
+
+# load in bespoke functions
+source('code/functions_culex.R')
+
+# set seed
+set.seed(1)
 
 # load data
 # raw occurrence data
@@ -103,8 +99,10 @@ names(non_duplicated_occ)[21] <- "temp_standID"
 names(no_date_occurrence)
 no_date_occurrence$Start_Year <- NULL
 no_date_occurrence$End_Year <- NULL
+
 no_date_occurrence$Year <- rep(NA, nrow(no_date_occurrence))
 no_date_occurrence$temp_standID <- rep(NA, nrow(no_date_occurrence))
+
 names(no_date_occurrence)[1] <- "unique_id"
 names(no_date_occurrence)[3] <- "lat"
 names(no_date_occurrence)[4] <- "lon"
@@ -113,6 +111,8 @@ names(no_date_occurrence)[18] <- "GAUL_CODE"
 names(no_date_occurrence)[21] <- "temp_standID"
 
 stopifnot(all.equal(colnames(non_duplicated_occ), colnames(no_date_occurrence)))
+
+# bind data together with the data missing sample year
 occurrence <- rbind(non_duplicated_occ,
                     no_date_occurrence)
 
@@ -129,9 +129,6 @@ year_idx <- which(!(is.na(occurrence$Year)))
 x <- occurrence[year_idx, 'Year'] 
 
 # sample from distribution of years within data set
-# set seed
-set.seed(1)
-
 years <- sample(x, size=length(NA_year_idx), replace=TRUE)
 
 # replace NAs with year by sampling from distribution of years within data set
@@ -226,9 +223,6 @@ for (polygon in c('poly1_dat', 'poly2_dat', 'poly3_dat')){
 }
 
 # now we need to expand the 'non-admin polys' using the 'buffer' column
-# load in bespoke function
-source('code/functions_culex.R')
-
 # set projection of template
 projection(template) <- '+init=epsg:3395'  
 

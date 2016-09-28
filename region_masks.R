@@ -5,7 +5,7 @@
 rm(list = ls())
 
 # load required package
-library(raster)
+source('code/packages.R')
 
 # read in master mask
 master_mask <- raster('data/clean/raster/master_mask.tif')
@@ -39,6 +39,7 @@ region_two <- crop(master_mask, region_two_extent)
 region_three <- crop(master_mask, region_three_extent)
 region_four <- crop(master_mask, region_four_extent)
 
+# plot to check cropping
 plot(region_one)
 plot(region_two)
 plot(region_three)

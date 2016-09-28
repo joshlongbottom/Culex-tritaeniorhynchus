@@ -2,17 +2,14 @@
 ## clear workspace
 rm(list = ls())
 
-# if running as solo script on big6, load in packages 
-library(seegSDM)
-library(raster)
-library(snowfall)
-library(GRaF)
-
-# set the RNG seed
-set.seed(1)
+# load in packages 
+source('code/packages.R')
 
 # load bespoke functions file
 source('code/functions_culex.R')
+
+# set the RNG seed
+set.seed(1)
 
 # set output path
 outpath <- 'output/vectors/'

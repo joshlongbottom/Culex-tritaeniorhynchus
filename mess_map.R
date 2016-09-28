@@ -3,10 +3,7 @@
 rm(list = ls())
 
 # load in packages 
-library(seegSDM)
-library(raster)
-library(snowfall)
-library(GRaF)
+source('code/packages.R')
 
 # set the RNG seed
 set.seed(1)

@@ -4,6 +4,9 @@
 # clear workspace
 rm(list = ls())
 
+# load packages
+source('code/packages.R')
+
 # read in each of the different datasets
 anopheles <- read.csv('data/raw/background/map_anopheles.csv', stringsAsFactors = FALSE)
 aegypti <- read.csv('data/raw/background/kraemer_aegypti.csv', stringsAsFactors = FALSE)
@@ -144,8 +147,6 @@ rm(aedes_vect,
    culex_vect)
 
 # merge the different gbif datasets as the column names will be consistent
-require(plyr)
-
 gbif <- rbind.fill(aedes_gbif,
                    anopheles_gbif,
                    culex_gbif)
