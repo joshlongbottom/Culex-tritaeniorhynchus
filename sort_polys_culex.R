@@ -13,7 +13,7 @@ set.seed(1)
 
 # load data
 # raw occurrence data
-dat <- read.csv('data/raw/datasets/merged_datasets_26082016.csv',
+dat <- read.csv('data/raw/datasets/merged_datasets_28092016.csv',
                       stringsAsFactors = FALSE)
 
 # use occurrence data only
@@ -118,7 +118,7 @@ occurrence <- rbind(non_duplicated_occ,
 
 # write out non_duplicated presence dataset
 write.csv(occurrence,
-          'data/raw/datasets/occurrence_temp_stand_26082016_prepolyextension.csv')
+          'data/raw/datasets/occurrence_temp_stand_28092016_prepolyextension.csv')
 
 # some culex data points have missing values (NA) for'year' (97 records 02.07.2016)
 # make an index of data points with and without NA for year
@@ -295,7 +295,7 @@ points(all_expanded$lon, all_expanded$lat, col = "red", pch = 16, cex = 0.6)
 if (!(any(is.na(all_expanded$lat)))) {
   # output the resulting table
   write.csv(all_expanded,
-            file = 'data/clean/occurrence/expanded_culex_data_26082016.csv',
+            file = 'data/clean/occurrence/expanded_culex_data_28092016.csv',
             row.names = FALSE)
 }  
 
@@ -304,6 +304,6 @@ excluded_list <- unique(excluded_polys[c("unique_id", "country", "admin_level", 
 
 # write out excluded polys
 write.csv(excluded_list,
-          'data/clean/occurrence/excluded_polygons_26082016.csv')
+          'data/clean/occurrence/excluded_polygons_28092016.csv')
 
 
