@@ -2,10 +2,7 @@
 rm(list = ls ())
 
 # load packages
-library(seegSDM)
-library(raster)
-library(snowfall)
-library(GRaF)
+source('code/packages.R')
 
 # organise covariates for analysis
 # read in a list of the covariates to be used in the model
