@@ -39,7 +39,8 @@ vector_dat <- read.csv('data/clean/occurrence/expanded_culex_data_26082016.csv',
                         stringsAsFactors =FALSE)
 
 # load in background data
-bias <- read.csv('data/clean/background/point_background_data_17082016.csv')
+bias <- read.csv('data/clean/background/point_background_data_17082016.csv',
+                 stringsAsFactors = FALSE)
 
 # add geometry type column to bias dataset
 names(bias)[14] <- 'Geometry_type'
