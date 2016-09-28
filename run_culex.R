@@ -32,6 +32,7 @@ names(covs_current)[names(covs_current)=='permanent_wetlands_2012']<-'permanent_
 names(covs_current)[names(covs_current)=='urban_and_built_up_2012']<-'urban_and_built_up'
 names(covs_current)[names(covs_current)=='cropland_natural_vegetation_mosaic_2012']<-'cropland_natural_vegetation_mosaic'
 names(covs_current)[names(covs_current)=='barren_or_sparsely_populated_2012']<-'barren_or_sparsely_populated'
+names(covs_current)[names(covs_current)=='croplands_2012']<-'croplands'
 
 # load in occurrence data
 vector_dat <- read.csv('data/clean/occurrence/expanded_culex_data_02072016.csv',
@@ -103,7 +104,8 @@ for (species in c('vector_dat')) {
     names(covs_year)[names(covs_year)==paste0('urban_and_built_up_', year)]<-'urban_and_built_up'
     names(covs_year)[names(covs_year)==paste0('cropland_natural_vegetation_mosaic_', year)]<-'cropland_natural_vegetation_mosaic'
     names(covs_year)[names(covs_year)==paste0('barren_or_sparsely_populated_', year)]<-'barren_or_sparsely_populated'
-   
+    names(covs_year)[names(covs_year)==paste0('croplands_', year)]<-'croplands'
+    
     # add nontemporal covariates
     covs_year <- addLayer(covs_year, covs_nontemporal)
     
