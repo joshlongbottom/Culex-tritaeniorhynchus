@@ -10,10 +10,10 @@
 rm(list = ls())
 
 # load required packages
-library(seegSDM)
-library(raster)
-library(snowfall)
-library(GRaF)
+source('code/packages.R')
+
+# set the seed for random sampling
+set.seed(1)
 
 # read in merged mosquito species background dataset
 background <- read.csv('data/raw/background/merged_global.csv',
@@ -60,16 +60,13 @@ iso <- over(pts_sp, country)$COUNTRY_ID
 # merge back with background dataset
 background$iso <- iso
 
-# create a copy of all extent backgound
-background_extent <- background
-
 #### 3) countries assigned an NA for iso are assummed to fall off of land ####
 # remove these records, alongside records for PNG and AUS
 background <- background[!is.na(background$iso), ]
 background <- background[!background$iso == "PNG", ]
 background <- background[!background$iso == "AUS", ]
 
-#### 4) emove duplicate point data and drop all polygon data ####
+#### 4) remove duplicate point data and drop all polygon data ####
 background$admin_level[!is.na(background$coordinate_uncertainty)] <- 'buffer'
 
 # subset and create datasets based on admin level
@@ -82,15 +79,12 @@ points <- background[background$admin_level == -999, ]
 # add location_type indicator
 points$location_type <- 'point'
 
-# write out merged extent point background (pre-de-duplication)
+# write out merged extent background (pre-de-duplication)
 write.csv(background,
           'data/raw/background/points_extent.csv',
           row.names = FALSE)
 
 #### remove spatially and temporally duplicated point data ####
-# set the seed for random sampling
-set.seed(1)
-
 # make NA GAUL_CODE columns for point locs
 points$GAUL_CODE <- NA
 
@@ -131,7 +125,7 @@ points_deduped$unique_id <- (points_deduped$unique_id + 99900)
 no_date_points$st_year <- NULL
 points_deduped$st_year <- NULL
 
-# rename end year to end_year
+# rename end year to 'Year' (for backround data spanning numerous years, end year is assigned here)
 names(points_deduped)[2] <- "Year"
 names(no_date_points)[2] <- "Year"
 
@@ -159,9 +153,6 @@ year_idx <- which(!(is.na(de_duplicated_points$Year)))
 x <- de_duplicated_points[year_idx, 'Year'] 
 
 # sample from distribution of years within data set
-# set seed
-set.seed(1)
-
 years <- sample(x, size=length(NA_year_idx), replace=TRUE)
 
 # replace NAs with year by sampling from distribution of years within data set
