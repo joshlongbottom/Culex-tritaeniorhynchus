@@ -161,7 +161,7 @@ for (species in c('vector_dat')) {
   
   model_list <- sfLapply(data_list,
                          runBRT,
-                         gbm.x = 9:ncol(dat_all),
+                         gbm.x = 8:ncol(dat_all),
                          gbm.y = 1,
                          n.folds = 10,
                          pred.raster = covs_current,

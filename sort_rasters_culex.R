@@ -53,9 +53,9 @@ names(covs) <- names
 
 # subset covariates to create stacks of temporal, 
 # non-temporal and the most contemporary covariates
-covs_current <- subset(covs, c(1:11, 100:107))
-covs_temporal <- subset(covs, 12:107)
-covs_nontemporal <- subset(covs, 1:11)
+covs_current <- subset(covs, c(1:13, 113:121))
+covs_temporal <- subset(covs, 14:121)
+covs_nontemporal <- subset(covs, 1:13)
 
 # output them as multiband .grd files
 writeRaster(covs_current,
