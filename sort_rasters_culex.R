@@ -57,7 +57,31 @@ covs_current <- subset(covs, c(1:13, 113:121))
 covs_temporal <- subset(covs, 14:121)
 covs_nontemporal <- subset(covs, 1:13)
 
-# output them as multiband .grd files
+## check correlation between covariates
+# create a random sample of locations
+pts <- bgSample(covs_current[[1]], n = 1000, spatial = FALSE)
+
+# get the values of all covariates at these points
+vals <- extract(covs_current, pts)
+
+# check for NAs at each of the locations, across all covariates
+any(is.na(vals))
+
+# build correlation matrix removing NAs
+cor <- cor(na.omit(vals), method='spearman')
+
+# plot correlation matrix as a heatmap
+par(mar = c(6, 4, 4, 5) + 0.1)
+heatmap(abs(cor))
+
+# get indexes for each covariate (as to which it is highly correlated with)
+TCB_mean_idx <- which(abs(cor[,1]) > 0.7)
+TCB_SD_idx <- which(abs(cor[,2]) > 0.7)
+EVI_mean_idx <- which(abs(cor[,3]) > 0.7)
+EVI_SD_idx <- which(abs(cor[,4]) > 0.7)
+
+##
+# output raster stacks as multiband .grd files
 writeRaster(covs_current,
             file = 'data/clean/raster/raster_current',
             overwrite = TRUE)
