@@ -35,7 +35,7 @@ names(covs_current)[names(covs_current)=='barren_or_sparsely_populated_2012']<-'
 names(covs_current)[names(covs_current)=='croplands_2012']<-'croplands'
 
 # load in occurrence data
-vector_dat <- read.csv('data/clean/occurrence/expanded_culex_data_26082016.csv',
+vector_dat <- read.csv('data/clean/occurrence/expanded_culex_data_03102016.csv',
                         stringsAsFactors =FALSE)
 
 # load in background data
