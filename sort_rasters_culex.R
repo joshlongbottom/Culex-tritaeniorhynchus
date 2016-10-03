@@ -53,9 +53,9 @@ names(covs) <- names
 
 # subset covariates to create stacks of temporal, 
 # non-temporal and the most contemporary covariates
-covs_current <- subset(covs, c(1:13, 113:121))
-covs_temporal <- subset(covs, 14:121)
-covs_nontemporal <- subset(covs, 1:13)
+covs_current <- subset(covs, c(1:11, 111:119))
+covs_temporal <- subset(covs, 12:119)
+covs_nontemporal <- subset(covs, 1:11)
 
 ## check correlation between covariates
 # create a random sample of locations
