@@ -39,7 +39,7 @@ vector_dat <- read.csv('data/clean/occurrence/expanded_culex_data_03102016.csv',
                         stringsAsFactors =FALSE)
 
 # load in background data
-bias <- read.csv('data/clean/background/point_background_data_17082016.csv',
+bias <- read.csv('data/clean/background/point_background_data_06102016.csv',
                  stringsAsFactors = FALSE)
 
 # add geometry type column to bias dataset
@@ -142,7 +142,7 @@ for (species in c('vector_dat')) {
   
   # specify the number of cores (ncpu), and number of boostraps (nboot)
   ncpu <- 60
-  nboot <- 20
+  nboot <- 300
   
   # get random bootstraps of the data (minimum 30 pres/30 abs)
   # for new subsample poly script, we require "Geometry_type" field, which is
