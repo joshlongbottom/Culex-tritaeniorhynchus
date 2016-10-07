@@ -19,7 +19,7 @@ names <- as.list(cov_list$cov_name)
 covs <- lapply(covars, raster)
 
 # read in study extent shapefile
-study_extent <-shapefile('data/raw/extent/culex_extent_rawv2.shp')
+study_extent <-shapefile('data/raw/extent/je_cdc_extent_buffered.shp')
 
 # get the extents of all of the covariates
 extents <- t(sapply(covs, function (x) as.vector(extent(x))))
@@ -53,9 +53,9 @@ names(covs) <- names
 
 # subset covariates to create stacks of temporal, 
 # non-temporal and the most contemporary covariates
-covs_current <- subset(covs, c(1:11, 111:119))
-covs_temporal <- subset(covs, 12:119)
-covs_nontemporal <- subset(covs, 1:11)
+covs_current <- subset(covs, c(1:8, 108:116))
+covs_temporal <- subset(covs, 9:116)
+covs_nontemporal <- subset(covs, 1:8)
 
 ## check correlation between covariates
 # create a random sample of locations
