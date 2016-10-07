@@ -20,9 +20,6 @@ covs_current <- brick('data/clean/raster/raster_current.grd')
 covs_temporal <- brick('data/clean/raster/raster_temporal.grd')
 covs_nontemporal <- brick('data/clean/raster/raster_nontemporal.grd')
 
-# load in master mask for pseudo-absence generation
-master_mask <- raster('data/clean/raster/master_mask.tif')
-
 # rename the temporal layers (remove year)
 names(covs_current)[names(covs_current)=='closed_shrublands_2012']<-'closed_shrublands'
 names(covs_current)[names(covs_current)=='open_shrublands_2012']<-'open_shrublands'
