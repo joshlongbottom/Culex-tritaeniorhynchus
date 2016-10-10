@@ -71,8 +71,14 @@ any(is.na(vals))
 cor <- cor(na.omit(vals), method='spearman')
 
 # plot correlation matrix as a heatmap
+png('data/raw/correlation.png',
+    width = 1000,
+    height = 2500)
+
 par(mar = c(6, 4, 4, 5) + 0.1)
 heatmap(abs(cor))
+
+dev.off()
 
 # get indexes for each covariate (as to which it is highly correlated with)
 TCB_SD_idx <- which(abs(cor[,1]) > 0.7)
