@@ -187,4 +187,12 @@ balanceWeights <- function(data) {
   
 }
 
+# function to calculate the mean and standard deviation for each pixel across bootstraps
+combine2 <- function(x){
+  
+  ans <- c(mean=mean(x), 
+           sd=sd(x))
+  
+  return(ans)
+}
 
