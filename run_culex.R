@@ -244,3 +244,23 @@ for (species in c('vector_dat')) {
   dev.off()
   
 }
+
+# calculate standard deviation value for each pixel
+# frst, get a list of the ensemble
+preds_list <- lapply(model_list, '[[', 4)
+
+# get back to log odds scale using logit function in 'gtools' package
+preds_sd <- lapply(preds_list, logit)
+
+# summarise all the ensembles
+preds_stack_sd <- stack(preds_sd)
+
+# calculate the mean and standard deviation for each pixel across bootstraps
+preds_sry_sd <- calc(preds_stack_sd, fun=combine2)
+
+# save standard deviation plot
+writeRaster(preds_sry_sd[[2]],
+            file='output/sd_raster.tif',
+            format='GTiff',
+            overwrite=TRUE)
+
