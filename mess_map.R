@@ -5,9 +5,6 @@ rm(list = ls())
 # load in packages 
 source('code/packages.R')
 
-# set the RNG seed
-set.seed(1)
-
 # load bespoke functions file
 source('code/functions_culex.R')
 
@@ -16,10 +13,7 @@ outpath <- 'output/vectors/'
 
 ## load the data
 # raster covariates
-covs_current <- brick('data/clean/raster/raster_current.grd')
-
-# load in master mask for pseudo-absence generation
-master_mask <- raster('data/clean/raster/master_mask.tif')
+covs_current <- brick('data/clean/raster/raster_current_glob.grd')
 
 # rename the temporal layers (remove year)
 names(covs_current)[names(covs_current)=='closed_shrublands_2012']<-'closed_shrublands'
@@ -32,11 +26,11 @@ names(covs_current)[names(covs_current)=='cropland_natural_vegetation_mosaic_201
 names(covs_current)[names(covs_current)=='barren_or_sparsely_populated_2012']<-'barren_or_sparsely_populated'
 
 # read in dat_covs model output
-dat_covs <- read.csv('data/raw/dat_all/dat_all_18082016.csv',
+dat_covs <- read.csv('data/raw/dat_all/data_list_11.11.2016.csv',
                      stringsAsFactors = FALSE)
 
 # just select covariate values (using col index)
-dat_covs <- dat_covs[c(9:27)]
+dat_covs <- dat_covs[c(9:25)]
 
 # create mess map (mess function)
 mess_map <- mess(covs_current, dat_covs, full = TRUE)
@@ -52,14 +46,14 @@ writeRaster(mess_map,
             overwrite=TRUE)
 
 # make binary, interpolation/extrapolation surface and save
-tmp <- mess_map[['rmess']] >= 0
+tmp <- mess_map[['mess']] >= 0
 
 # crop to extent
 tmp_masked <- mask(tmp, master_mask)
 
 # write to disk
-writeRaster(tmp_masked, 
-            file='output/mess_binary_non-leverage', 
+writeRaster(tmp, 
+            file='output/global_mess_binary', 
             format='GTiff', 
             overwrite=TRUE)
 
