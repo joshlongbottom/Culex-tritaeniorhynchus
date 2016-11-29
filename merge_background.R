@@ -41,7 +41,7 @@ anopheles$county <- rep(NA, nrow(anopheles))
 anopheles$locality <- rep(NA, nrow(anopheles))
 
 # subset to get variables of interest, and re-order variables
-anopheles <- anopheles[c(2, 9, 11, 8, 7, 3:4, 17:19, 5)]
+anopheles <- anopheles[c(2, 9, 11, 8, 7, 3:4, 17:19, 5, 1)]
 anopheles$admin_level <- rep(-999, nrow(anopheles))
 anopheles$coordinate_uncertainty <- rep(NA, nrow(anopheles))
 anopheles$source <- rep('MAP', nrow(anopheles))
@@ -58,6 +58,7 @@ names(anopheles) <- c('country',
                       'county',
                       'locality',
                       'sitename',
+                      'source_id',
                       'admin_level',
                       'coordinate_uncertainty',
                       'source')
@@ -79,7 +80,7 @@ kraemer$county <- rep(NA, nrow(kraemer))
 kraemer$locality <- rep(NA, nrow(kraemer))
 
 # subset and reorder
-kraemer <- kraemer[c(9, 8, 8, 14, 1, 6:7, 15:17, 4, 5)]
+kraemer <- kraemer[c(9, 8, 8, 14, 1, 6:7, 15:17, 4, 2, 5)]
 kraemer$coordinate_uncertainty <- rep(NA, nrow(kraemer))
 kraemer$source <- rep('SEEG', nrow(kraemer))
 
@@ -95,6 +96,7 @@ names(kraemer) <- c('country',
                     'county',
                     'locality',
                     'sitename',
+                    'source_id',
                     'admin_level',
                     'coordinate_uncertainty',
                     'source')
@@ -120,7 +122,7 @@ vect$presence <- rep(1, nrow(vect))
 vect$admin_level <- rep(NA, nrow(vect))
 
 # reorder and subset vectormap to get variables of interest
-vect <- vect[c(45, 79, 79, 84, 30, 40, 43, 46:48, 48, 85, 44)]
+vect <- vect[c(45, 79, 79, 84, 30, 40, 43, 46:48, 48, 1, 85, 44)]
 vect$source <- rep('Vectormap', nrow(vect))
 
 # rename fields
@@ -135,6 +137,7 @@ names(vect) <- c('country',
                  'county',
                  'locality',
                  'sitename',
+                 'source_id',
                  'admin_level',
                  'coordinate_uncertainty',
                  'source')
@@ -159,7 +162,7 @@ gbif$admin_level <- rep(NA, nrow(gbif))
 gbif$state <- rep(NA, nrow(gbif))
 
 # reorder and subset gbif data to obtain variables of interest
-gbif <- gbif[c(19, 134, 134, 154, 116, 76, 83, 156, 86,  79, 79, 155, 18)]
+gbif <- gbif[c(19, 134, 134, 154, 116, 76, 83, 156, 86,  79, 79, 43, 155, 18)]
 gbif$source <- rep('gbif', nrow(gbif))
 
 # rename for consistency
@@ -174,6 +177,7 @@ names(gbif) <- c('country',
                  'county',
                  'locality',
                  'sitename',
+                 'source_id',
                  'admin_level',
                  'coordinate_uncertainty',
                  'source')
@@ -201,7 +205,7 @@ pop_bio$coordinate_uncertainty <- rep(NA, nrow(pop_bio))
 pop_bio$source <- rep('Popbio', nrow(pop_bio))
 
 # as this is messy data, assign end year equal to start year
-pop_bio <- pop_bio[c(17, 16, 16, 18, 3, 10, 11, 19:21, 12, 13, 22:23)]
+pop_bio <- pop_bio[c(17, 16, 16, 18, 3, 10, 11, 19:21, 12, 1, 13, 22:23)]
 
 names(pop_bio) <- c('country',
                     'st_year',
@@ -214,6 +218,7 @@ names(pop_bio) <- c('country',
                     'county',
                     'locality',
                     'sitename',
+                    'source_id',
                     'admin_level',
                     'coordinate_uncertainty',
                     'source')
