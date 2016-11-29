@@ -23,7 +23,7 @@ for(i in 1:length(list_get)){
   
   # download data from gbif
   downloaded_data <- gbif(species_name, '')
-  
+ 
   # merge into one dataframe
   if(i == 1){
     
@@ -46,7 +46,7 @@ genera$presence <- rep(NA, nrow(genera))
 genera$admin_level <- rep(NA, nrow(genera))
 genera$state <- rep(NA, nrow(genera))
 
-genera <- genera[c(12, 92, 92, 157, 81, 53, 58, 159, 109, 56, 56, 158, 96)]
+genera <- genera[c(12, 92, 92, 157, 81, 53, 58, 159, 109, 56, 56, 30, 158, 96)]
 
 genera$source <- rep('gbif', nrow(genera))
 
@@ -61,6 +61,7 @@ names(genera) <- c('country',
                    'county',
                    'locality',
                    'sitename',
+                   'source_id',
                    'admin_level',
                    'coordinate_uncertainty',
                    'source')
