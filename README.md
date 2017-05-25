@@ -15,4 +15,5 @@ We assembled a contemporary database of *Cx. tritaeniorhynchus* presence records
 
 ## Results
 ![Alt text](https://preview.ibb.co/nJzb0v/Figure_3.png "Predicted environmental suitability for Culex tritaeniorhynchus within areas at risk of Japanese encephalitis transmission")
+
 Predicted environmental suitability for *Culex tritaeniorhynchus* within areas at risk of Japanese encephalitis transmission. The map shows the predicted relative environmental suitability for *Culex tritaeniorhynchus* at each 5 × 5 km gridded cell within the limits of Japanese encephalitis, on a scale of low environmental suitability (0) to high environmental suitability (1.0).
